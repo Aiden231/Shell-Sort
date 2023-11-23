@@ -16,7 +16,7 @@ inc_insertion_sort(int list[], int first, int last, int gap,int* move_count,int*
 		list[j + gap] = key;
 	}
 }
-
+// shell ì •ë ¬
 void shell_sort(int list[], int n, int* move_count, int* compare_count, int print) {
 	int i, gap;
 	for (gap = n / 2; gap > 0; gap = gap / 2) {
@@ -25,7 +25,7 @@ void shell_sort(int list[], int n, int* move_count, int* compare_count, int prin
 			inc_insertion_sort(list, i, n - 1, gap, move_count, compare_count);
 		}
 
-		// print°¡ 1ÀÎ °æ¿ì¿¡¸¸ °úÁ¤ Ãâ·Â
+		// printê°€ 1ì¸ ê²½ìš°ì—ë§Œ ê³¼ì • ì¶œë ¥
 		if (print == 1) {
 			for (int i = 0; i < MAX_SIZE; i++) {
 				printf("%d ", list[i]);
@@ -37,18 +37,19 @@ void shell_sort(int list[], int n, int* move_count, int* compare_count, int prin
 
 int main()
 {
+	// ë¦¬ìŠ¤íŠ¸ ìƒì„±
 	int n = MAX_SIZE;
 	int list[MAX_SIZE] = { 0 };
 	int move[MAX_SIZE] = { 0 };
 	int compare[MAX_SIZE] = { 0 };
-
+	// ì´ë™,ë¹„êµ íšŸìˆ˜ ë³€ìˆ˜
 	int move_count = 0;
 	int compare_count = 0;
-	
+	// í‰ê·  ê°’ ê³„ì‚°ì„ ìœ„í•œ ë³€ìˆ˜
 	int sum = 0;
 	int move_average = 0;
 	int compare_average = 0;
-	
+	// ë‚œìˆ˜ ë¦¬ìŠ¤íŠ¸ ìƒì„±
 	srand(time(NULL));
 	for (int i = 0; i < n; i++) {
 		list[i] = rand() % 100;
@@ -60,43 +61,44 @@ int main()
 	}
 	printf("\n\n");
 
+	// shell ì •ë ¬ ì‹œí–‰
 	printf("Shell sort\n");
 	shell_sort(list, n, &move_count, &compare_count, 1);
 	
-	// ÀÌµ¿, ºñ±³ È½¼ö ÀúÀå
+	// ì´ë™, ë¹„êµ íšŸìˆ˜ ì €ì¥
 	move[0] = move_count;
 	compare[0] = compare_count;
 
-	// ¹İº¹ ½ÃÇà
+	// ë°˜ë³µ ì‹œí–‰
 	for (int i = 1; i < MAX_SIZE; i++) {
-		// º¯¼ö ÃÊ±âÈ­
+		// ë³€ìˆ˜ ì´ˆê¸°í™”
 		move_count = 0;
 		compare_count = 0;
-		// ¸®½ºÆ® ³­¼ö·Î Ã¤¿ì±â
+		// ë¦¬ìŠ¤íŠ¸ ë‚œìˆ˜ë¡œ ì±„ìš°ê¸°
 		for (int i = 0; i < n; i++) {
 			list[i] = rand() % 100;
 		}
-		// shell Á¤·Ä ½ÃÇà
+		// shell ì •ë ¬ ì‹œí–‰
 		shell_sort(list, n, &move_count, &compare_count, 0);
-		// ÀÌµ¿, ºñ±³ È½¼ö ¹è¿­¿¡ ÀúÀå
+		// ì´ë™, ë¹„êµ íšŸìˆ˜ ë°°ì—´ì— ì €ì¥
 		move[i] = move_count;
 		compare[i] = compare_count;
 	}
 	
-	// ÀÌµ¿ È½¼ö Æò±Õ ±¸ÇÏ±â
+	// ì´ë™ íšŸìˆ˜ í‰ê·  êµ¬í•˜ê¸°
 	for (int i = 0; i < MAX_SIZE; i++) {
 		sum += move[i];
 	}
 	move_average = sum / 20;
 
-	sum = 0; // sum °ª ÃÊ±âÈ­
+	sum = 0; // sum ê°’ ì´ˆê¸°í™”
 
-	// ºñ±³ È½¼ö Æò±Õ ±¸ÇÏ±â
+	// ë¹„êµ íšŸìˆ˜ í‰ê·  êµ¬í•˜ê¸°
 	for (int i = 0; i < MAX_SIZE; i++) {
 		sum += compare[i];
 	}
 	compare_average = sum / 20;
 
-	// Æò±Õ ÀÌµ¿, ºñ±³ È½¼ö Ãâ·Â
+	// í‰ê·  ì´ë™, ë¹„êµ íšŸìˆ˜ ì¶œë ¥í•˜ê¸°
 	printf("Average move : %d\nAverage compare : %d\n", move_average,compare_average);
 }
