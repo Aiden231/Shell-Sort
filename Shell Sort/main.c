@@ -16,7 +16,7 @@ inc_insertion_sort(int list[], int first, int last, int gap,int* move_count,int*
 		list[j + gap] = key;
 	}
 }
-
+// shell 정렬
 void shell_sort(int list[], int n, int* move_count, int* compare_count, int print) {
 	int i, gap;
 	for (gap = n / 2; gap > 0; gap = gap / 2) {
@@ -37,18 +37,19 @@ void shell_sort(int list[], int n, int* move_count, int* compare_count, int prin
 
 int main()
 {
+	// 리스트 생성
 	int n = MAX_SIZE;
 	int list[MAX_SIZE] = { 0 };
 	int move[MAX_SIZE] = { 0 };
 	int compare[MAX_SIZE] = { 0 };
-
+	// 이동,비교 횟수 변수
 	int move_count = 0;
 	int compare_count = 0;
-	
+	// 평균 값 계산을 위한 변수
 	int sum = 0;
 	int move_average = 0;
 	int compare_average = 0;
-	
+	// 난수 리스트 생성
 	srand(time(NULL));
 	for (int i = 0; i < n; i++) {
 		list[i] = rand() % 100;
@@ -60,6 +61,7 @@ int main()
 	}
 	printf("\n\n");
 
+	// shell 정렬 시행
 	printf("Shell sort\n");
 	shell_sort(list, n, &move_count, &compare_count, 1);
 	
@@ -97,5 +99,6 @@ int main()
 	}
 	compare_average = sum / 20;
 
+	// 평균 이동, 비교 횟수 출력하기
 	printf("Average move : %d\nAverage compare : %d\n", move_average,compare_average);
 }
