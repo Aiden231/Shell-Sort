@@ -97,5 +97,6 @@ int main()
 	}
 	compare_average = sum / 20;
 
+	// 평균 이동, 비교 횟수 출력
 	printf("Average move : %d\nAverage compare : %d\n", move_average,compare_average);
 }
